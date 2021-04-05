@@ -33,6 +33,7 @@ if __name__ == "__main__":
             avg_densities.append(avg_X_train_i)
         
         fig, axes = plt.subplots(1, num_classes, figsize=(10, 1.5))
+        fig.suptitle("Average pixel densities: {}".format(db_name))
         for i in range(num_classes):
             axes[i].axis("off")
             axes[i].set_title(i)
@@ -50,6 +51,7 @@ if __name__ == "__main__":
         
         
         fig, axes = plt.subplots(num_classes+1, num_classes+1, figsize=(8, 8))
+        plt.suptitle("Average pixel densities difference: {}".format(db_name))
         axes[0, 0].axis("off")
         for i in range(num_classes):
             axes[i+1, 0].axis("off")
@@ -62,7 +64,7 @@ if __name__ == "__main__":
                     axes[i+1, j+1].imshow(avg_differences[i][j], vmin=-256, vmax=255, cmap="bwr")
                 
         fig_name = "{}/avg_differences_{}.png".format(imgs_dir_name, db_name)
-        fig.savefig(fig_name, format="png")
+        fig.savefig(fig_name, format="png", bbox_inches = "tight")
         
         # accuracies 1_px logistic pairwise
         print("Drawing chart of pairwise logistic regression for {}...".format(db_name))
@@ -71,9 +73,10 @@ if __name__ == "__main__":
         fig = plt.Figure(figsize=(9, 9))
         ax = fig.add_subplot()
         sns.heatmap(data=acc_out, vmin=0.5, vmax=1, cmap="RdYlGn", annot=True, ax=ax)
+        fig.suptitle("Acurracy for pairwise logistict regression on one pixel: {}".format(db_name))
         
         fig_name = "{}/accuracy_1px_pairwise_{}.png".format(imgs_dir_name, db_name)
-        fig.savefig(fig_name, format="png")
+        fig.savefig(fig_name, format="png", bbox_inches = "tight")
         
         
         
