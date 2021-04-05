@@ -1,0 +1,9 @@
+venv/
+data/
+pickles/
+csv/
+images/
+
+__pycache__/
+
+results.txt
