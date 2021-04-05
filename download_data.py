@@ -14,7 +14,11 @@ if __name__ == "__main__":
                   "http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz",]
     for url in mnist_urls:
         filename = url.split("/")[-1]
-        urlretrieve(url, filename=os.path.join("data", "mnist", filename))
+        filepath = os.path.join("data", "mnist", filename)
+        if os.path.exists(filepath):
+            print("\"{}\" already downloaded to \"{}\"".format(filename, filepath))
+        else:
+            urlretrieve(url, filename=filepath)
         
     print("Downloading Fashion-MNIST...")
     fashion_urls = ["http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/train-images-idx3-ubyte.gz",
@@ -23,4 +27,8 @@ if __name__ == "__main__":
                     "http://fashion-mnist.s3-website.eu-central-1.amazonaws.com/t10k-labels-idx1-ubyte.gz",]
     for url in fashion_urls:
         filename = url.split("/")[-1]
-        urlretrieve(url, filename=os.path.join("data", "fashion", filename))
+        filepath = os.path.join("data", "fashion", filename)
+        if os.path.exists(filepath):
+            print("\"{}\" already downloaded to \"{}\"".format(filename, filepath))
+        else:
+            urlretrieve(url, filename=filepath)
