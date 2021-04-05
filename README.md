@@ -1,5 +1,6 @@
 # Distinguishing pairs of classes in MNIST and Fashion-MNIST with just one pixel 
 Most pairs of classes in MNIST as well Fashion-MNIST can be distinguished with just one pixels. This code calculates by how much and visualizes the results.
+The results are described in [this article](https://lucafrance.github.io/2021/04/05/mnist-pairwise-one-pixel.html).
 
 ### Usage
 To download the datasets to `data`.
@@ -22,5 +23,5 @@ To perform all the above operations in PowerShell.
 ### References
 * [MNIST](http://yann.lecun.com/exdb/mnist/)
 * [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist)
-* [Zalando Research](https://research.zalando.com/)
 * [Variance explained - Exploring handwritten digit classification: a tidy analysis of the MNIST dataset](http://varianceexplained.org/r/digit-eda/)
+* [Zalando Research](https://research.zalando.com/)
