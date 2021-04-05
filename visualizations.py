@@ -1,7 +1,9 @@
 import os
 
 import numpy as np
+import matplotlib
 import matplotlib.pyplot as plt
+import matplotlib.cm as cm
 import seaborn as sns
 
 from evaluate_models import MnistData
@@ -50,19 +52,26 @@ if __name__ == "__main__":
                 avg_differences[i][j] = avg_densities[i] - avg_densities[j]
         
         
-        fig, axes = plt.subplots(num_classes+1, num_classes+1, figsize=(8, 8))
+        fig, axes = plt.subplots(num_classes+1, num_classes+2, figsize=(8, 8))
         plt.suptitle("Average pixel densities difference: {}".format(db_name))
         axes[0, 0].axis("off")
+        
         for i in range(num_classes):
             axes[i+1, 0].axis("off")
             axes[0, i+1].axis("off")
             axes[i+1, 0].text(0.5, 0.5, i)
             axes[0, i+1].text(0.5, 0.5, i)
+        
         for i in range(num_classes):
             for j in range(num_classes):
                     axes[i+1, j+1].axis("off")
                     axes[i+1, j+1].imshow(avg_differences[i][j], vmin=-256, vmax=255, cmap="bwr")
-                
+        
+        for i in range(num_classes+1):
+            axes[i, -1].axis("off")
+        scal_map = cm.ScalarMappable(norm=matplotlib.colors.Normalize(vmin=-256, vmax=255), cmap="bwr")
+        cbar = fig.colorbar(scal_map, ax=axes[:, -1], orientation="vertical", ticks=[-256, 0, 255])
+        
         fig_name = "{}/avg_differences_{}.png".format(imgs_dir_name, db_name)
         fig.savefig(fig_name, format="png", bbox_inches = "tight")
         
